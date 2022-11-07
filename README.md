@@ -13,9 +13,16 @@ Your task is to create a dockerized service, **claim_process**  to process claim
 
 
 ## Task Instructions
-1. You’re free to choose any python compatible framework as you see fit: FastApi, Django, Flask.
-2. Use sqlite as a db. Use an ORM of your choice - SQLModel/Sqlalchemy/Tortoise.
-3. Please add data validation for *“submitted procedure”* and *“Provider NPI”* columns. *“Submitted procedure”* always begins with the letter ‘D’ and *“Provider NPI”* is always a 10 digit number. The data validation should be flexible to allow for other validation rules as needed.
-4. Write pseudo code or comments in your code to indicate how **claim_process** will communicate with **payments**. There are multiple choices here but make reasonable assumptions based on:
+1. Mail deepak@32health.care a copy/link to your solution.
+2. Feel free to make and reasonable assumptions, state them and proceed if anything is unclear.
+3. You’re free to choose any python compatible framework as you see fit: FastApi, Django, Flask.
+4. Use sqlite as a db. Use an ORM of your choice - SQLModel/Sqlalchemy/Tortoise.
+5. Please add data validation for *“submitted procedure”* and *“Provider NPI”* columns. *“Submitted procedure”* always begins with the letter ‘D’ and *“Provider NPI”* is always a 10 digit number. The data validation should be flexible to allow for other validation rules as needed.
+6. Write pseudo code or comments in your code to indicate how **claim_process** will communicate with **payments**. There are multiple choices here but make reasonable assumptions based on:
    - What needs to be done if there is a failure in either service and steps need to be unwinded.
    - Multiple instances of either service are running concurrently to handle a large volume of claims.
+
+## Evaluation Criteria
+1. Clean, documented code and avoidance of anti-patterns
+2. Functioning code
+3. Consideration of corner cases.
