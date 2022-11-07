@@ -13,7 +13,7 @@ Your task is to create a **_dockerized_** service, **claim_process**  to process
 
 
 ## Task Instructions
-1. Mail deepak@32health.care a copy/link to your solution.
+1. You have up to **120 min** to complete your solution. Mail deepak@32health.care a copy/link to your solution.
 2. Feel free to make and reasonable assumptions, state them and proceed if anything is unclear.
 3. You’re free to choose any python compatible framework as you see fit: FastApi, Django, Flask. As noted earlier the solution must be dockerized.
 4. Use sqlite as a db. Use an ORM of your choice - SQLModel/Sqlalchemy/Tortoise.
