@@ -9,7 +9,7 @@ Your task is to create a **_dockerized_** service, **claim_process**  to process
 2. **claim_process** generates a unique id per claim
 3. **claim_process** computes the *“net fee”* as a result per the formula below.
 *“net fee” = “provider fees” + “member coinsurance” + “member copay” - “Allowed fees”* (note again that the names are not consistent in capitalization).
-4. A downstream service, **payments**, will consume *“net fee”* computed by claim_process
+4. A downstream service, **payments**, will consume *“net fee”* computed by **claim_process**.
 
 
 ## Task Instructions
