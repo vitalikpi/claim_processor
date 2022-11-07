@@ -25,4 +25,4 @@ Your task is to create a **_dockerized_** service, **claim_process**  to process
 ## Evaluation Criteria
 1. Clean, documented code and avoidance of anti-patterns
 2. Functioning code
-3. Consideration of corner cases.
+3. Consideration of corner cases
