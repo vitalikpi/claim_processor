@@ -18,7 +18,7 @@ Your task is to create a **_dockerized_** service, **claim_process**  to process
 3. You’re free to choose any Python based API framework as you see fit such as FastApi/Django/Flask. As noted earlier the solution must be dockerized.
 4. Use sqlite as a db and any ORM of your choice such as SQLModel/Sqlalchemy/Tortoise.
 5. Please add data validation for *“submitted procedure”* and *“Provider NPI”* columns. *“Submitted procedure”* always begins with the letter ‘D’ and *“Provider NPI”* is always a 10 digit number. The data validation should be flexible to allow for other validation rules as needed.
-6. Write pseudo code or comments in your code to indicate how **claim_process** will communicate with **payments**. There are multiple choices here but make reasonable assumptions based on:
+6. Write pseudo code or comments in your code to indicate how **claim_process** will communicate with **payments**. There are multiple choices here but propose a reasonable solution based on:
    - What needs to be done if there is a failure in either service and steps need to be unwinded.
    - Multiple instances of either service are running concurrently to handle a large volume of claims.
 
