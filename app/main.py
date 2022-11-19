@@ -110,7 +110,7 @@ async def claim_process(claims: List[Claim]) -> ProcessingResponse:
 
             session.add(ClaimModel(
                 uid=uid,
-                service_date=claim.service_date,
+                service_date=str(claim.service_date),
                 submitted_procedure=claim.submitted_procedure,
                 quadrant=claim.quadrant,
                 plan_or_group_no=claim.plan_or_group_no,
