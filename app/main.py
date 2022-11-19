@@ -1,9 +1,24 @@
-from typing import Union, List
+import uuid
+from typing import Union, List, Optional
 
+import pymysql
 from fastapi import FastAPI
 from pydantic import BaseModel
+from sqlmodel import Field, SQLModel, create_engine
 
-import uuid
+
+class ClaimModel(SQLModel, table=True):
+    uid: str = Field(default=None, primary_key=True)
+    service_date: str
+    submitted_procedure: str
+    quadrant: Optional[str] = None
+    plan_or_group_no: str
+    subscriber_no: str
+    provider_npi: str
+    provider_fees: float
+    allowed_fees: float
+    member_coinsurance: float
+    member_copay: float
 
 
 class Claim(BaseModel):
@@ -23,6 +38,9 @@ class ProcessingResponse(BaseModel):
     uid: str
     net_fee: float
 
+
+engine = create_engine("mysql+pymysql://root:example@db:3306/claims_db", echo=True)
+SQLModel.metadata.create_all(engine)
 
 app = FastAPI()
 
