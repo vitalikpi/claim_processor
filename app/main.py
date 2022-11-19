@@ -126,5 +126,56 @@ async def claim_process(claims: List[Claim]) -> ProcessingResponse:
         session.commit()
     return result
 
+# 6. Write pseudo code or comments in your code to indicate how **claim_process** will communicate with **payments**.
+# There are multiple choices here but propose a reasonable solution based on:
+#    - What needs to be done if there is a failure in either service and steps need to be unwinded.
+#    - Multiple instances of either service are running concurrently to handle a large volume of claims.
+#
+
+# Answer:
+# import requests
+#
+# url = '..../claim_process'
+# myobj = [
+#   {
+#     "service_date": "2022-11-19",
+#     "submitted_procedure": "D0180",
+#     "plan_or_group_no": "GRP-1000",
+#     "subscriber_no": "6546546",
+#     "provider_npi": "1497775530",
+#     "provider_fees": 80,
+#     "allowed_fees": 100,
+#     "member_coinsurance": 25,
+#     "member_copay": 14.33
+#   },
+#   {
+#     "service_date": "2022-11-19",
+#     "submitted_procedure": "D0180",
+#     "plan_or_group_no": "GRP-1000",
+#     "subscriber_no": "6546546",
+#     "provider_npi": "1497775530",
+#     "provider_fees": 80,
+#     "allowed_fees": 100,
+#     "member_coinsurance": 25,
+#     "member_copay": 14.33
+#   }
+# ]'
+#
+# x = requests.post(url, json = myobj)
+#
+# - What needs to be done if there is a failure in either service and steps need to be unwinded.
+# If failure happens in the claim processor - we should roll back the transaction
+# if failure happens in the payment processor - we ahall implement another method to delete the failed claim (or mark them as failed)
+#
+#  Multiple instances of either service are running concurrently to handle a large volume of claims.
+# in this case using of transactions may slow down the DB, I'd recommend marking records as failed or deleting them.
+
+
+
+
+
+
+
+
 
 
