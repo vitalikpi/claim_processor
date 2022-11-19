@@ -10,7 +10,7 @@ class Claim(BaseModel):
     service_date: str
     submitted_procedure: str
     quadrant: Union[str, None] = None
-    plan_or_Group_no: str
+    plan_or_group_no: str
     subscriber_no: str
     provider_npi: str
     provider_fees: float
