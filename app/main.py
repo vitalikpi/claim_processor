@@ -4,10 +4,12 @@ from typing import Union, List, Optional
 import pymysql
 from fastapi import FastAPI
 from pydantic import BaseModel
-from sqlmodel import Field, SQLModel, create_engine
+from sqlmodel import Field, Session, SQLModel, create_engine
 
 
 class ClaimModel(SQLModel, table=True):
+    __tablename__ = "claims"
+
     uid: str = Field(default=None, primary_key=True)
     service_date: str
     submitted_procedure: str
@@ -48,9 +50,28 @@ app = FastAPI()
 @app.post("/claim_process")
 async def claim_process(claims: List[Claim]) -> ProcessingResponse:
     result = []
-    for claim in claims:
-        net_fee = claim.provider_fees + claim.member_coinsurance + claim.member_copay - claim.allowed_fees
-        result.append(ProcessingResponse(uid=str(uuid.uuid1()), net_fee=net_fee))
+
+    with Session(engine) as session:
+        for claim in claims:
+            net_fee = claim.provider_fees + claim.member_coinsurance + claim.member_copay - claim.allowed_fees
+            uid = str(uuid.uuid1())
+
+            session.add(ClaimModel(
+                uid=uid,
+                service_date=claim.service_date,
+                submitted_procedure=claim.submitted_procedure,
+                quadrant=claim.quadrant,
+                plan_or_group_no=claim.plan_or_group_no,
+                subscriber_no=claim.subscriber_no,
+                provider_npi=claim.provider_npi,
+                provider_fees=claim.provider_fees,
+                allowed_fees=claim.allowed_fees,
+                member_coinsurance=claim.member_coinsurance,
+                member_copay=claim.member_copay
+            ))
+
+            result.append(ProcessingResponse(uid=uid, net_fee=net_fee))
+        session.commit()
     return result
 
 
